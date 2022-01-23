@@ -28,8 +28,9 @@ const Index: NextPage = () => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = getSession(context);
-  if (session) {
+  const session = await getSession(context);
+  const isDev = true;
+  if (session && !isDev) {
     return {
       redirect: {
         destination: "/player",
