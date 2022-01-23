@@ -1,4 +1,4 @@
-enum MessageTypes {
+export enum MessageTypes {
   Ping,
   Pong,
   Identify,
@@ -7,8 +7,8 @@ enum MessageTypes {
 }
 
 interface IMessage {
-  Type: MessageTypes;
-  Data?: Map<string, unknown>;
+  type: MessageTypes;
+  data?: Record<string, unknown>;
 }
 
 export default IMessage;

@@ -3,7 +3,7 @@ package ws
 //todo better data deserialization
 
 type IdentityData struct {
-	ClientID string `json:"client_id"`
+	ClientID string `json:"clientId"`
 	User     User   `json:"user"`
 }
 
@@ -13,6 +13,7 @@ func handleIdentifyEvent(message *Message) {
 		MessageData: MessageData{
 			Type: Identify,
 			Data: map[string]interface{}{
+				"admin":    true,
 				"playlist": "",
 				"playHead": 0,
 				"user":     d["user"],

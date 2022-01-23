@@ -12,4 +12,10 @@ export default NextAuth({
   jwt: {
     secret: process.env.SECRET,
   },
+  callbacks: {
+    async session({ session, token, user }) {
+      session.user.id = token.sub;
+      return session;
+    },
+  },
 });

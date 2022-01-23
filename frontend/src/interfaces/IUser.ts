@@ -1,7 +1,6 @@
 interface IUser {
+  id: string;
   name: string;
-  userID: string;
-  admin: boolean;
 }
 
 export default IUser;

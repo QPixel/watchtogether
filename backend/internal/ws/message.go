@@ -3,7 +3,6 @@ package ws
 import (
 	"encoding/json"
 	tlog "github.com/ubergeek77/tinylog"
-	"strconv"
 )
 
 var log = tlog.NewTaggedLogger("WS", tlog.NewColor("38;5;111"))
@@ -36,15 +35,14 @@ type RawMessage struct {
 }
 
 func (rm RawMessage) UnSerializeData() Message {
-	s, _ := strconv.Unquote(string(rm.Data))
 	var md MessageData
-	if err := json.Unmarshal([]byte(s), &md); err != nil {
+	if err := json.Unmarshal(rm.Data, &md); err != nil {
 		log.Errorf("error unmarshalling message, %s", err.Error())
 	}
 	if md.RawData != nil && len(md.RawData) > 0 {
 		if err := json.Unmarshal(md.RawData, &md.Data); err != nil {
 			// handle error
-			log.Errorf("error unmarshalling message, %s", err.Error())
+			log.Errorf("error unmarshalling data, %s", err.Error())
 		}
 	}
 

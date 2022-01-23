@@ -4,5 +4,6 @@ declare namespace NodeJS {
     DISCORD_SECRET: string;
     SECRET: string;
     CLIENT_ID: string;
+    WS_URI: string;
   }
 }

@@ -8,11 +8,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/ws/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ws/handlers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/ws/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ws/message.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/ws/structs.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ws/structs.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/interfaces/IMessage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/interfaces/IMessage.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/interfaces/IUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/interfaces/IUser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/interfaces/Identity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/interfaces/Identity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/types/environment.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/types/environment.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yarn-error.log" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,21 +103,5 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/internal/ws/message.go</url>
-          <line>69</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/internal/ws/message.go</url>
-          <line>59</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
