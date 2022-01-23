@@ -3,3 +3,5 @@ interface IUser {
   userID: string;
   admin: boolean;
 }
+
+export default IUser;

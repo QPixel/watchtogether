@@ -5,23 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a64704d-5500-41a6-aa4c-e275933fc58c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/internal/ws/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/ws/handlers.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/ws/hub.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/ws/message.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/ws/structs.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/watchtogether/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/watchtogether/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/driver/driver.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/logger/logger.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/server/middleware.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/server/routes.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/server/server.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/logger.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/ws/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ws/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/ws/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ws/message.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/interfaces/IUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/interfaces/IUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/interfaces/Identity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/interfaces/Identity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yarn-error.log" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,12 +45,15 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2456l5ltkI1NptLGqpacBxKAWdj" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -103,7 +97,26 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/ws/message.go</url>
+          <line>69</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/ws/message.go</url>
+          <line>59</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

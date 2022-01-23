@@ -1,4 +1,8 @@
+import IUser from "./IUser";
+
 interface IdentityData {
-  clientID: string;
+  clientID?: string;
+  playlist?: string;
+  playHead?: number;
   user: IUser;
 }

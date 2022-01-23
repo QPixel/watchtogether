@@ -20,9 +20,9 @@ const (
 )
 
 type MessageData struct {
-	Type    MessageTypes           `json:"type"`
-	RawData json.RawMessage        `json:"data,omitempty"`
-	Data    map[string]interface{} `json:"-"`
+	Type    MessageTypes    `json:"type"`
+	RawData json.RawMessage `json:"data,omitempty"`
+	Data    interface{}     `json:"-"`
 }
 
 type Message struct {
@@ -41,13 +41,7 @@ func (rm RawMessage) UnSerializeData() Message {
 	if err := json.Unmarshal([]byte(s), &md); err != nil {
 		log.Errorf("error unmarshalling message, %s", err.Error())
 	}
-	if md.RawData != nil && len(md.RawData) > 0 && md.RawData[0] == '"' {
-		var s string
-		if err := json.Unmarshal(md.RawData, &s); err != nil {
-			// handle error
-			log.Errorf("error unmarshalling message, %s", err.Error())
-		}
-		md.RawData = json.RawMessage(s)
+	if md.RawData != nil && len(md.RawData) > 0 {
 		if err := json.Unmarshal(md.RawData, &md.Data); err != nil {
 			// handle error
 			log.Errorf("error unmarshalling message, %s", err.Error())
@@ -62,7 +56,14 @@ func (rm RawMessage) UnSerializeData() Message {
 }
 
 func (m Message) SerializeMessage() RawMessage {
-	data, err := json.Marshal(m)
+	var err error
+	if m.Data != nil {
+		m.RawData, err = json.Marshal(m.Data)
+		if err != nil {
+			log.Errorf("unable to marshal data, %s", err.Error())
+		}
+	}
+	data, err := json.Marshal(m.MessageData)
 	if err != nil {
 		log.Errorf("unable to marshal message, %s", err.Error())
 	}
