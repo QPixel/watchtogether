@@ -1,0 +1,36 @@
+Arguments: 
+  /home/pixel/.volta/tools/image/node/16.13.2/bin/node /home/pixel/.volta/tools/image/yarn/1.22.17/bin/yarn.js add -D @types/zib
+
+PATH: 
+  /home/pixel/.volta/tools/image/yarn/1.22.17/bin:/home/pixel/.volta/tools/image/node/16.13.2/bin:/home/pixel/.volta/bin:/home/pixel/.volta/bin:/home/pixel/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.13.2
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@types%2fzib: Not found
+      at Request.params.callback [as _callback] (/home/pixel/.volta/tools/image/yarn/1.22.17/lib/cli.js:67029:18)
+      at Request.self.callback (/home/pixel/.volta/tools/image/yarn/1.22.17/lib/cli.js:140883:22)
+      at Request.emit (node:events:390:28)
+      at Request.<anonymous> (/home/pixel/.volta/tools/image/yarn/1.22.17/lib/cli.js:141855:10)
+      at Request.emit (node:events:390:28)
+      at IncomingMessage.<anonymous> (/home/pixel/.volta/tools/image/yarn/1.22.17/lib/cli.js:141777:12)
+      at Object.onceWrapper (node:events:509:28)
+      at IncomingMessage.emit (node:events:402:35)
+      at endReadableNT (node:internal/streams/readable:1343:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

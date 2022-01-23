@@ -1,72 +1,41 @@
 package main
 
 import (
-	"flag"
-	"fmt"
-	"github.com/peterbourgon/ff/v3"
-	"github.com/qpixel/watchtogether/internal/logger"
-	"github.com/qpixel/watchtogether/internal/server"
-	"github.com/ubergeek77/tinylog"
-	"os"
-	"runtime"
+	"encoding/json"
+	"github.com/gorilla/mux"
+	"github.com/qpixel/watchtogether/internal/ws"
+	tlog "github.com/ubergeek77/tinylog"
+	"net/http"
 )
 
-type flags struct {
-	loglvl int
-	port   int
-}
-
-func newFlags(args []string) (flgs flags, err error) {
-	fs := flag.NewFlagSet(args[0], flag.ContinueOnError)
-
-	var (
-		loglvl = fs.Int("loglvl", tinylog.TraceLevel, "sets the log level (also via LOG_LEVEL)")
-		port   = fs.Int("port", 4000, "sets the port to use (also via PORT)")
-	)
-	// Parse the command line flags from above
-	err = ff.Parse(fs, args[1:], ff.WithEnvVarNoPrefix())
-	if err != nil {
-		return flgs, err
-	}
-	return flags{
-		loglvl: *loglvl,
-		port:   *port,
-	}, nil
-}
+var log = tlog.NewTaggedLogger("Logger", tlog.NewColor("38;5;111"))
 
 func main() {
-	if err := run(os.Args); err != nil {
-		tinylog.DefaultLogger().Errorf("error from main.run(): %s\n", err)
-		os.Exit(1)
-	}
+	r := mux.NewRouter()
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		resp := make(map[string]string)
+		resp["status"] = "ok"
+		jsonResp, err := json.Marshal(resp)
+		if err != nil {
+			log.Fatalf("error in unmarshalling json. err: %s", err.Error())
+		}
+		_, err = w.Write(jsonResp)
+		if err != nil {
+			return
+		}
+		return
+	})
+	hub := ws.NewHub()
+	go hub.Run()
 
-}
+	r.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
+		ws.ServeWs(hub, w, r)
+	})
 
-func run(args []string) error {
-
-	flgs, err := newFlags(args)
+	err := http.ListenAndServe(":8080", r)
 	if err != nil {
-		return err
+		log.Errorf("%s", err.Error())
+		log.Fatalf("unable to serve on port 8080")
 	}
-	// setup logger with defaults
-	lgr := logger.NewLogger(flgs.loglvl, "WatchTogether")
-
-	lgr.Infof("go runtime ver: %s", runtime.Version())
-	lgr.Infof("Logging level has been set to %d", lgr.LogLevel)
-
-	mr := server.NewMuxRouter()
-
-	serverDriver := server.NewDriver()
-
-	params := server.NewServerParams(lgr, serverDriver)
-
-	s, err := server.NewServer(mr, params)
-	if err != nil {
-		lgr.Errorf("err: %s", err)
-		lgr.Fatal("error in server.NewServer")
-	}
-
-	s.Addr = fmt.Sprintf(":%d", flgs.port)
-
-	return s.ListenAndServe()
 }

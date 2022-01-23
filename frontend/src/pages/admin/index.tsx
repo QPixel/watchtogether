@@ -19,7 +19,6 @@ const AdminPage: NextPage<AdminPageProps> = ({
   isAdmin,
   session,
 }) => {
-  console.log(session);
   return (
     <>
       <Container height="100vh">
