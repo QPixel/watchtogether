@@ -24,12 +24,18 @@ func NewHub() *Hub {
 }
 
 func (h *Hub) handleMessage(rm RawMessage) {
-	m := rm.UnSerializeData()
+	m := rm.UnserializeData()
 	switch m.Type {
 	case Identify:
 		handleIdentifyEvent(&m)
 	case Ping:
 		handlePingEvent(&m)
+	case Position:
+		handleGetPlayhead(&m)
+	case SetPosition:
+		handleSetPlayhead(&m)
+	default:
+		return
 	}
 	return
 }

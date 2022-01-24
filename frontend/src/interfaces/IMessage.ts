@@ -2,8 +2,8 @@ export enum MessageTypes {
   Ping,
   Pong,
   Identify,
-  Position,
-  SetPosition,
+  GetPlayhead,
+  SetPlayhead,
 }
 
 interface IMessage {

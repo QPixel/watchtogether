@@ -1,3 +1,4 @@
+import consola from "consola";
 import { GetServerSideProps, NextPage } from "next";
 import { Session, User } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
@@ -14,7 +15,20 @@ interface PlayerPageProps {
   URI: string;
   user: User;
 }
+
+const pingEvent = (ws: WebSocket) => {
+  let interval = setInterval(() => {
+    if (ws.readyState === ws.CLOSED) {
+      clearInterval(interval);
+      return;
+    }
+    console.log("running ping event");
+    ws.send(MessageUtil.encode(new Message(MessageTypes.Ping)));
+  }, 20000);
+};
+
 const PlayerPage: NextPage<PlayerPageProps> = ({ URI, user }) => {
+  consola.wrapAll();
   useEffect(() => {
     if (typeof window === "undefined") return;
     const ws = new WebSocket(URI);
@@ -30,6 +44,7 @@ const PlayerPage: NextPage<PlayerPageProps> = ({ URI, user }) => {
           })
         )
       );
+      pingEvent(ws);
     };
     ws.onmessage = (event) => {
       console.log(event);

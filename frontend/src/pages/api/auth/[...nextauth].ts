@@ -13,7 +13,7 @@ export default NextAuth({
     secret: process.env.SECRET,
   },
   callbacks: {
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       session.user.id = token.sub;
       return session;
     },

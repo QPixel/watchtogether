@@ -15,7 +15,7 @@ func handleIdentifyEvent(message *Message) {
 			Data: map[string]interface{}{
 				"admin":    true,
 				"playlist": "",
-				"playHead": 0,
+				"playhead": 0,
 				"user":     d["user"],
 			},
 		},
@@ -32,4 +32,12 @@ func handlePingEvent(message *Message) {
 		},
 	}
 	message.send <- m.SerializeMessage().Data
+}
+
+func handleGetPlayhead(message *Message) {
+
+}
+
+func handleSetPlayhead(message *Message) {
+
 }

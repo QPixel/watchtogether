@@ -34,7 +34,7 @@ type RawMessage struct {
 	Data   []byte
 }
 
-func (rm RawMessage) UnSerializeData() Message {
+func (rm RawMessage) UnserializeData() Message {
 	var md MessageData
 	if err := json.Unmarshal(rm.Data, &md); err != nil {
 		log.Errorf("error unmarshalling message, %s", err.Error())
