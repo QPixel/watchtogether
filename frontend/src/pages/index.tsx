@@ -1,6 +1,7 @@
-import { Button, Text } from "@chakra-ui/react";
+import { Button, Link as ChakraLink, Text } from "@chakra-ui/react";
 import { GetServerSideProps, NextPage } from "next";
 import { getSession, signIn } from "next-auth/react";
+import Link from "next/link";
 import React from "react";
 import { Container } from "../components/Container";
 import { Footer } from "../components/Footer";
@@ -16,12 +17,17 @@ const Index: NextPage = () => {
           maxWidth="200"
           alignSelf="center"
           onClick={() => signIn("discord")}
+          disabled
         >
           Login With Discord
         </Button>
       </Main>
       <Footer>
-        <Text>&copy;2022 Velvox</Text>
+        <ChakraLink>
+          <Link href="https://velvox.dev">
+            <Text>&copy;2022 Velvox</Text>
+          </Link>
+        </ChakraLink>
       </Footer>
     </Container>
   );
