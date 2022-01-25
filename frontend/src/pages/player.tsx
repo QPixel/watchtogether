@@ -3,7 +3,8 @@ import { GetServerSideProps, NextPage } from "next";
 import { Session, User } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
+import ReactPlayer from "react-player";
 import { Container } from "../components/Container";
 import { MessageTypes } from "../interfaces/IMessage";
 import Message from "../util/Message";
@@ -28,6 +29,7 @@ const pingEvent = (ws: WebSocket) => {
 };
 
 const PlayerPage: NextPage<PlayerPageProps> = ({ URI, user }) => {
+  const playerRef = useRef<ReactPlayer>();
   consola.wrapAll();
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -63,7 +65,11 @@ const PlayerPage: NextPage<PlayerPageProps> = ({ URI, user }) => {
       ws.close();
     };
   }, []);
-  return <Container height="100vh">{/* <Player /> */}</Container>;
+  return (
+    <Container height="100vh">
+      <Player id="" ref={playerRef} />
+    </Container>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
