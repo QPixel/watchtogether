@@ -8,7 +8,7 @@ export enum MessageTypes {
 
 interface IMessage {
   type: MessageTypes;
-  data?: Record<string, unknown>;
+  data?: unknown;
 }
 
 export default IMessage;

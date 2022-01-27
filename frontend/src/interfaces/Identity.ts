@@ -6,3 +6,5 @@ interface IdentityData {
   playHead?: number;
   user: IUser;
 }
+
+export default IdentityData;

@@ -3,7 +3,7 @@ declare namespace NodeJS {
     DISCORD_ID: string;
     DISCORD_SECRET: string;
     SECRET: string;
-    CLIENT_ID: string;
-    WS_URI: string;
+    NEXT_PUBLIC_CLIENT_ID: string;
+    NEXT_PUBLIC_WS_URI: string;
   }
 }

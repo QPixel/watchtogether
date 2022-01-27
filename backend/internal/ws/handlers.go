@@ -3,12 +3,15 @@ package ws
 //todo better data deserialization
 
 type IdentityData struct {
-	ClientID string `json:"clientId"`
+	ClientID string `json:"clientID"`
 	User     User   `json:"user"`
 }
 
 func handleIdentifyEvent(message *Message) {
 	d := message.Data.(map[string]interface{})
+	if id, ok := d["clientID"]; ok {
+		log.Infof("Client %s has sent identify event", id.(string))
+	}
 	m := Message{
 		MessageData: MessageData{
 			Type: Identify,

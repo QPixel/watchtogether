@@ -1,6 +1,7 @@
 import { Button, Link as ChakraLink, Text } from "@chakra-ui/react";
 import { GetServerSideProps, NextPage } from "next";
 import { getSession, signIn } from "next-auth/react";
+import Head from "next/head";
 import Link from "next/link";
 import React from "react";
 import { Container } from "../components/Container";
@@ -10,26 +11,30 @@ import { Main } from "../components/Main";
 
 const Index: NextPage = () => {
   return (
-    <Container height="100vh">
-      <Hero />
-      <Main>
-        <Button
-          maxWidth="200"
-          alignSelf="center"
-          onClick={() => signIn("discord")}
-          disabled
-        >
-          Login With Discord
-        </Button>
-      </Main>
-      <Footer>
-        <ChakraLink>
-          <Link href="https://velvox.dev">
-            <Text>&copy;2022 Velvox</Text>
-          </Link>
-        </ChakraLink>
-      </Footer>
-    </Container>
+    <>
+      <Head>
+        <title>Watch Together</title>
+      </Head>
+      <Container height="100vh">
+        <Hero />
+        <Main>
+          <Button
+            maxWidth="200"
+            alignSelf="center"
+            onClick={() => signIn("discord")}
+          >
+            Login With Discord
+          </Button>
+        </Main>
+        <Footer>
+          <ChakraLink>
+            <Link href="https://velvox.dev">
+              <Text>&copy;2022 Velvox</Text>
+            </Link>
+          </ChakraLink>
+        </Footer>
+      </Container>
+    </>
   );
 };
 
