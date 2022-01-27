@@ -14,11 +14,10 @@ import isBrowser from "../util/isBrowser";
 const Player = dynamic(() => import("../components/Player"), { ssr: false });
 
 interface PlayerPageProps {
-  URI: string;
   user: User;
 }
 
-const PlayerPage: NextPage<PlayerPageProps> = ({ URI, user }) => {
+const PlayerPage: NextPage<PlayerPageProps> = ({ user }) => {
   const playerRef = useRef<ReactPlayer>();
   const socket = useWS({ user });
   const [id, setID] = useState<string>("");

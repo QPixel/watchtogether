@@ -8,6 +8,7 @@ import { Container } from "../components/Container";
 import { Footer } from "../components/Footer";
 import { Hero } from "../components/Hero";
 import { Main } from "../components/Main";
+import isDev from "../util/isDev";
 
 const Index: NextPage = () => {
   return (
@@ -22,6 +23,7 @@ const Index: NextPage = () => {
             maxWidth="200"
             alignSelf="center"
             onClick={() => signIn("discord")}
+            disabled={!isDev()}
           >
             Login With Discord
           </Button>

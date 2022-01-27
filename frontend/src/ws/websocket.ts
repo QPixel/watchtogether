@@ -1,5 +1,3 @@
-// nice and easy way to get types for the
-
 import { User } from "next-auth";
 import EventEmitter from "events";
 import IdentityData from "../interfaces/Identity";
@@ -8,6 +6,7 @@ import Message from "../util/Message";
 import MessageUtil from "../util/MessageUtil";
 
 // browser socket
+// todo: write a shim for this
 let Websocket: typeof WebSocket;
 if (typeof window !== "undefined") {
   Websocket = window.WebSocket;
