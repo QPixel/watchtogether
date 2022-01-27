@@ -8,9 +8,9 @@ export default class MessageUtil {
   }
   static decode(message: string): Message | null {
     const parsed = JSON.parse(message);
-    if (typeof parsed.t !== "number") {
+    if (typeof parsed.type !== "number") {
       return null;
     }
-    return new Message(parsed.t, parsed.d);
+    return new Message(parsed.type, parsed.data);
   }
 }

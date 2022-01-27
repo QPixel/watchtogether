@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "typeRoots": ["types/"]
   },
-  "include": ["types/*.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["types/*.d.ts", "**/*.ts", "**/*.tsx", "next-seo.config.js"],
   "exclude": ["node_modules"]
 }

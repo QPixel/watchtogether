@@ -8,15 +8,19 @@ interface useWSProps {
 
 // todo write websocket reconnector
 const useWS = ({ user }: useWSProps) => {
+  if (typeof window === "undefined") {
+    return;
+  }
   // todo checkout usecallback
   const [socket, setSocket] = useState<PlayerSocket>();
   useEffect(() => {
-    let socket = new PlayerSocket(user);
-    setSocket(socket);
+    let internalSocket = new PlayerSocket(user);
+    setSocket(internalSocket);
     return () => {
-      return socket.close();
+      return internalSocket.close();
     };
   }, []);
+
   return socket;
 };
 

@@ -17,7 +17,7 @@ func handleIdentifyEvent(message *Message) {
 			Type: Identify,
 			Data: map[string]interface{}{
 				"admin":    true,
-				"playlist": "",
+				"playlist": "http://cdnapi.kaltura.com/p/1878761/sp/187876100/playManifest/entryId/1_usagz19w/flavorIds/1_5spqkazq,1_nslowvhp,1_boih5aji,1_qahc37ag/format/applehttp/protocol/http/a.m3u8",
 				"playhead": 0,
 				"user":     d["user"],
 			},
