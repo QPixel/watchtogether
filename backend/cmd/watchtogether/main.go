@@ -10,6 +10,11 @@ import (
 
 var log = tlog.NewTaggedLogger("Logger", tlog.NewColor("38;5;111"))
 
+var (
+	VERSION     string
+	ENVIRONMENT string
+)
+
 func main() {
 	r := mux.NewRouter()
 	hub := ws.NewHub()
@@ -47,7 +52,8 @@ func main() {
 		}
 		return
 	})
-
+	log.Infof("starting backend")
+	log.Infof("running version %s. environment: %s", VERSION, ENVIRONMENT)
 	err := http.ListenAndServe(":8080", r)
 	if err != nil {
 		log.Errorf("%s", err.Error())

@@ -16,10 +16,11 @@ func handleIdentifyEvent(message *Message) {
 		MessageData: MessageData{
 			Type: Identify,
 			Data: map[string]interface{}{
-				"admin":    true,
-				"playlist": "http://cdnapi.kaltura.com/p/1878761/sp/187876100/playManifest/entryId/1_usagz19w/flavorIds/1_5spqkazq,1_nslowvhp,1_boih5aji,1_qahc37ag/format/applehttp/protocol/http/a.m3u8",
-				"playhead": 0,
-				"user":     d["user"],
+				"admin":      true,
+				"playlist":   "http://localhost:8081/BelleOpening.m3u8",
+				"controller": true,
+				"playhead":   0,
+				"user":       d["user"],
 			},
 		},
 	}
@@ -42,5 +43,21 @@ func handleGetPlayhead(message *Message) {
 }
 
 func handleSetPlayhead(message *Message) {
-
+	d := message.Data.(map[string]interface{})
+	m := Message{
+		MessageData: MessageData{
+			Type: SetPlayhead,
+			Data: map[string]interface{}{
+				"playhead": d["playhead"],
+				"paused":   d["paused"],
+			},
+		},
+	}
+	log.Infof("Received SetPlayhead event. playhead is at %s", d["playhead"])
+	for client := range message.Client.hub.Clients {
+		if client == message.Client {
+			continue
+		}
+		client.send <- m.SerializeMessage().Data
+	}
 }

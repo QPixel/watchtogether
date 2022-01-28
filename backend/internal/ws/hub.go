@@ -30,9 +30,9 @@ func (h *Hub) handleMessage(rm RawMessage) {
 		handleIdentifyEvent(&m)
 	case Ping:
 		handlePingEvent(&m)
-	case Position:
+	case GetPlayhead:
 		handleGetPlayhead(&m)
-	case SetPosition:
+	case SetPlayhead:
 		handleSetPlayhead(&m)
 	default:
 		return

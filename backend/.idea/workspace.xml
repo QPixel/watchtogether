@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a64704d-5500-41a6-aa4c-e275933fc58c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vscode/settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/watchtogether/build.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/interfaces/SocketEvents.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/watchtogether/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/watchtogether/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/ws/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ws/handlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/hooks/useWS.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/hooks/useWS.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/ws/hub.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ws/hub.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/ws/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ws/message.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Player.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Player.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/interfaces/Identity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/interfaces/Identity.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/pages/player.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/player.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/ws/websocket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/ws/websocket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

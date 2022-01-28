@@ -14,8 +14,8 @@ const (
 	Ping MessageTypes = iota
 	Pong
 	Identify
-	Position
-	SetPosition
+	GetPlayhead
+	SetPlayhead
 )
 
 type MessageData struct {
