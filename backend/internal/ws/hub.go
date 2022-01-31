@@ -4,6 +4,9 @@ type Hub struct {
 	// Registered Clients
 	Clients map[*Client]bool
 
+	// State
+	State *State
+
 	// Inbound messages from the Clients
 	broadcast chan RawMessage
 
@@ -20,6 +23,7 @@ func NewHub() *Hub {
 		register:   make(chan *Client),
 		unregister: make(chan *Client),
 		Clients:    make(map[*Client]bool),
+		State:      NewState(),
 	}
 }
 

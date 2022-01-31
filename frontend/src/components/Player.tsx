@@ -2,6 +2,7 @@ import { Box, css } from "@chakra-ui/react";
 import React, { FC, useRef, useState } from "react";
 import ReactPlayer, { Config, ReactPlayerProps } from "react-player";
 import { MessageTypes } from "../interfaces/IMessage";
+import SocketEvents from "../interfaces/SocketEvents";
 import Message from "../util/Message";
 import MessageUtil from "../util/MessageUtil";
 import PlayerSocket from "../ws/websocket";
@@ -10,13 +11,6 @@ type PlayerProps = {
   id: string;
   socket: PlayerSocket;
 } & ReactPlayerProps;
-
-interface ProgressProps {
-  played: number;
-  playedSeconds: number;
-  loaded: number;
-  loadedSeconds: number;
-}
 
 const Player: FC<PlayerProps> = (props) => {
   const playerRef = useRef<ReactPlayer>(null);
@@ -27,21 +21,25 @@ const Player: FC<PlayerProps> = (props) => {
       forceHLS: true,
     },
   };
-  const onProgress = (state: ProgressProps) => {
+  socket.emitter.on(SocketEvents.GetPlayhead, (e) => {
+    playerRef.current.seekTo(e.playhead);
+  });
+  const onSeek = (playedSeconds: number) => {
     if (paused) {
       socket?.send(
         MessageUtil.encode(
           new Message(MessageTypes.SetPlayhead, {
-            playhead: state.playedSeconds,
+            playhead: playedSeconds,
             paused: true,
           })
         )
       );
+      return;
     }
     socket?.send(
       MessageUtil.encode(
         new Message(MessageTypes.SetPlayhead, {
-          playhead: state.playedSeconds,
+          playhead: playedSeconds,
           paused: false,
         })
       )
@@ -79,7 +77,7 @@ const Player: FC<PlayerProps> = (props) => {
         controls
         onPlay={onPlay}
         onPause={onPause}
-        onProgress={onProgress}
+        onSeek={onSeek}
         ref={playerRef}
         {...props}
       />

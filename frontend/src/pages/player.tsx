@@ -1,20 +1,14 @@
-import { Socket } from "dgram";
 import { GetServerSideProps, NextPage } from "next";
 import { User } from "next-auth";
 import { getSession } from "next-auth/react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import React, { useRef, useState } from "react";
-import ReactPlayer from "react-player";
-import { BaseReactPlayerProps } from "react-player/base";
+import React, { useState } from "react";
 import { Container } from "../components/Container";
 import useWS from "../hooks/useWS";
 import IdentityData from "../interfaces/Identity";
-import { MessageTypes } from "../interfaces/IMessage";
 import SocketEvents from "../interfaces/SocketEvents";
 import isBrowser from "../util/isBrowser";
-import Message from "../util/Message";
-import MessageUtil from "../util/MessageUtil";
 
 const Player = dynamic(() => import("../components/Player"), { ssr: false });
 
