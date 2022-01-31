@@ -8,7 +8,7 @@ import { Container } from "../components/Container";
 import { Footer } from "../components/Footer";
 import { Hero } from "../components/Hero";
 import { Main } from "../components/Main";
-import isDev from "../util/isDev";
+import { isDev } from "../util";
 
 const Index: NextPage = () => {
   return (

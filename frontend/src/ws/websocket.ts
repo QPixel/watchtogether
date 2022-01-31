@@ -25,6 +25,10 @@ export default class PlayerSocket extends Websocket {
     this.onmessage = this.onMessage;
     this.onclose = this.onClose;
   }
+  close(code?: number, reason?: string): void {
+    this.emitter.removeAllListeners();
+    super.close(code, reason);
+  }
   onMessage(evt: MessageEvent<any>) {
     let message = MessageUtil.decode(evt.data);
     if (message.type === MessageTypes["Ping"]) {
@@ -65,7 +69,6 @@ export default class PlayerSocket extends Websocket {
   }
   onClose(event: CloseEvent) {
     console.log("[WS] socket connection closed");
-    console.log(event);
     this.emitter.emit("closed");
   }
   get open() {
