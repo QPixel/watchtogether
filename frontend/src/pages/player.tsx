@@ -28,6 +28,7 @@ const PlayerPage: NextPage<PlayerPageProps> = ({ user }) => {
       setID(e.playlist);
       setIdentity(e);
     });
+    console.log(identity);
   }
   return (
     <>
@@ -35,7 +36,7 @@ const PlayerPage: NextPage<PlayerPageProps> = ({ user }) => {
         <title>Watch Together</title>
       </Head>
       <Container height="100vh" background={"#000"}>
-        <Player id={id} socket={socket} />
+        <Player id={id} socket={socket} identity={identity} />
       </Container>
     </>
   );

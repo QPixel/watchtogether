@@ -27,11 +27,19 @@ func (s *State) setPlayhead(playhead float64) error {
 		return errors.New("unable to find state")
 	}
 	s.Lock()
-	defer s.Lock()
+	defer s.Unlock()
 	s.playhead = playhead
 	return nil
 }
-
+func (s *State) setPaused(paused bool) error {
+	if s == nil {
+		return errors.New("unable to find state")
+	}
+	s.Lock()
+	defer s.Unlock()
+	s.paused = paused
+	return nil
+}
 func (s *State) IsController(userID string) bool {
 	if userID == s.controllerUserId {
 		return true

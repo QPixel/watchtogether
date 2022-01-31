@@ -15,7 +15,7 @@ func handleIdentifyEvent(message *Message) {
 	user := d["user"].(map[string]interface{})
 	userId := user["id"].(string)
 	playhead := message.hub.State.playhead
-
+	paused := message.hub.State.paused
 	m := Message{
 		MessageData: MessageData{
 			Type: Identify,
@@ -24,6 +24,7 @@ func handleIdentifyEvent(message *Message) {
 				"playlist":      "http://localhost:8081/BelleOpening.m3u8",
 				"hasController": message.hub.State.IsController(userId),
 				"playhead":      playhead,
+				"paused":        paused,
 				"user":          d["user"],
 			},
 		},
@@ -61,6 +62,10 @@ func handleSetPlayhead(message *Message) {
 	err := message.hub.State.setPlayhead(d["playhead"].(float64))
 	if err != nil {
 		log.Errorf("unable to set playhead. %s", err)
+	}
+	err = message.hub.State.setPaused(d["paused"].(bool))
+	if err != nil {
+		log.Errorf("unable to set paused. %s", err)
 	}
 	for client := range message.Client.hub.Clients {
 		if client == message.Client {

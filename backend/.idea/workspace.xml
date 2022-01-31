@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a64704d-5500-41a6-aa4c-e275933fc58c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/internal/ws/state.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/ws/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ws/handlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/ws/hub.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ws/hub.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/ws/state.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ws/state.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/Player.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Player.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/pages/player.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/player.tsx" afterDir="false" />
     </list>
@@ -100,5 +99,16 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/ws/handlers.go</url>
+          <line>61</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

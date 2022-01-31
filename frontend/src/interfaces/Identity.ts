@@ -5,7 +5,8 @@ interface IdentityData {
   controller?: boolean;
   clientID?: string;
   playlist?: string;
-  playHead?: number;
+  playhead?: number;
+  paused?: boolean;
   user: IUser;
 }
 

@@ -1,5 +1,6 @@
 enum SocketEvents {
   Identify = "Identify",
+  SetPlayhead = "SetPlayhead",
   GetPlayhead = "GetPlayhead",
 }
 
