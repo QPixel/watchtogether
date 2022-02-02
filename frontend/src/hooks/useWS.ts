@@ -14,6 +14,9 @@ const useWS = ({ user }: useWSProps): PlayerSocket | null => {
   // todo checkout usecallback
   const [socket, setSocket] = useState<PlayerSocket>(null);
   useEffect(() => {
+    if (socket !== null) {
+      return;
+    }
     let internalSocket = new PlayerSocket(user);
     setSocket(internalSocket);
     return () => {

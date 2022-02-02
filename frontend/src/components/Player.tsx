@@ -73,9 +73,7 @@ const Player = forwardRef<ReactPlayer, ReactPlayerProps>((props, ref) => {
         width="100%"
         height="100%"
         config={config}
-        controls
         ref={ref}
-        playing={false}
         {...props}
       />
     </Box>
