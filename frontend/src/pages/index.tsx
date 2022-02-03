@@ -23,7 +23,6 @@ const Index: NextPage = () => {
             maxWidth="200"
             alignSelf="center"
             onClick={() => signIn("discord")}
-            disabled={!isDev()}
           >
             Login With Discord
           </Button>
@@ -42,8 +41,8 @@ const Index: NextPage = () => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
-  const isDev = true;
-  if (session && !isDev) {
+
+  if (session && isDev()) {
     return {
       redirect: {
         destination: "/player",
