@@ -7,17 +7,22 @@ interface useWSProps {
 }
 
 // todo write websocket reconnector
-const useWS = ({ user }: useWSProps) => {
+const useWS = ({ user }: useWSProps): PlayerSocket | null => {
   if (typeof window === "undefined") {
     return;
   }
   // todo checkout usecallback
-  const [socket, setSocket] = useState<PlayerSocket>();
+  const [socket, setSocket] = useState<PlayerSocket>(null);
   useEffect(() => {
+    if (socket !== null) {
+      return;
+    }
     let internalSocket = new PlayerSocket(user);
     setSocket(internalSocket);
     return () => {
-      return internalSocket.close();
+      if (internalSocket.readyState !== WebSocket.OPEN) {
+        return internalSocket.close();
+      }
     };
   }, []);
 

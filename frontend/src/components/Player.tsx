@@ -1,90 +1,83 @@
-import { Box, css } from "@chakra-ui/react";
-import React, { FC, useRef, useState } from "react";
+import { Box } from "@chakra-ui/react";
+import React, { forwardRef } from "react";
 import ReactPlayer, { Config, ReactPlayerProps } from "react-player";
-import { MessageTypes } from "../interfaces/IMessage";
-import Message from "../util/Message";
-import MessageUtil from "../util/MessageUtil";
-import PlayerSocket from "../ws/websocket";
 
-type PlayerProps = {
-  id: string;
-  socket: PlayerSocket;
-} & ReactPlayerProps;
-
-interface ProgressProps {
-  played: number;
-  playedSeconds: number;
-  loaded: number;
-  loadedSeconds: number;
-}
-
-const Player: FC<PlayerProps> = (props) => {
-  const playerRef = useRef<ReactPlayer>(null);
-  const [paused, setPaused] = useState<boolean>(false);
-  const { socket } = props;
+const Player = forwardRef<ReactPlayer, ReactPlayerProps>((props, ref) => {
   const config: Config = {
     file: {
       forceHLS: true,
     },
   };
-  const onProgress = (state: ProgressProps) => {
-    if (paused) {
-      socket?.send(
-        MessageUtil.encode(
-          new Message(MessageTypes.SetPlayhead, {
-            playhead: state.playedSeconds,
-            paused: true,
-          })
-        )
-      );
-    }
-    socket?.send(
-      MessageUtil.encode(
-        new Message(MessageTypes.SetPlayhead, {
-          playhead: state.playedSeconds,
-          paused: false,
-        })
-      )
-    );
-  };
-  const onPause = () => {
-    setPaused(true);
-    socket?.send(
-      MessageUtil.encode(
-        new Message(MessageTypes.SetPlayhead, {
-          playhead: playerRef.current.getCurrentTime(),
-          paused: true,
-        })
-      )
-    );
-  };
-  const onPlay = () => {
-    setPaused(false);
-    socket?.send(
-      MessageUtil.encode(
-        new Message(MessageTypes.SetPlayhead, {
-          playhead: playerRef.current.getCurrentTime(),
-          paused: false,
-        })
-      )
-    );
-  };
+  // useEffect(() => {
+  //   if (playerRef.current && typeof props.identity !== "undefined") {
+  //     console.log(props.identity.playhead);
+  //     playerRef.current.seekTo(props.identity.playhead);
+  //     setPaused(props.identity.paused);
+  //   }
+  // }, []);
+  // socket.emitter.once(SocketEvents.SetPlayhead, (e) => {
+  //   console.log(e);
+  //   playerRef.current.seekTo(e.playhead);
+  //   setPaused(e.paused);
+  // });
+  // const onSeek = (playedSeconds: number) => {
+  //   if (!props.identity.admin) return;
+  //   if (paused) {
+  //     socket?.send(
+  //       MessageUtil.encode(
+  //         new Message(MessageTypes.SetPlayhead, {
+  //           playhead: playedSeconds,
+  //           paused: true,
+  //         })
+  //       )
+  //     );
+  //     return;
+  //   }
+  //   socket?.send(
+  //     MessageUtil.encode(
+  //       new Message(MessageTypes.SetPlayhead, {
+  //         playhead: playedSeconds,
+  //         paused: false,
+  //       })
+  //     )
+  //   );
+  // };
+  // const onPause = () => {
+  //   if (!props.identity.admin) return;
+  //   setPaused(true);
+  //   socket?.send(
+  //     MessageUtil.encode(
+  //       new Message(MessageTypes.SetPlayhead, {
+  //         playhead: playerRef.current.getCurrentTime(),
+  //         paused: true,
+  //       })
+  //     )
+  //   );
+  // };
+  // const onPlay = () => {
+  //   if (!props.identity.admin) return;
+  //   setPaused(false);
+  //   socket?.send(
+  //     MessageUtil.encode(
+  //       new Message(MessageTypes.SetPlayhead, {
+  //         playhead: playerRef.current.getCurrentTime(),
+  //         paused: false,
+  //       })
+  //     )
+  //   );
+  // };
   return (
     <Box height="100vh" width="100vw">
       <ReactPlayer
-        url={props.id}
+        url={props.url}
         width="100%"
         height="100%"
         config={config}
-        controls
-        onPlay={onPlay}
-        onPause={onPause}
-        onProgress={onProgress}
-        ref={playerRef}
+        ref={ref}
         {...props}
       />
     </Box>
   );
-};
+});
 
 export default Player;

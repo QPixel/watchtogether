@@ -1,22 +1,19 @@
-import { Socket } from "dgram";
 import { GetServerSideProps, NextPage } from "next";
 import { User } from "next-auth";
 import { getSession } from "next-auth/react";
-import dynamic from "next/dynamic";
 import Head from "next/head";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
-import { BaseReactPlayerProps } from "react-player/base";
 import { Container } from "../components/Container";
+import Player from "../components/Player";
 import useWS from "../hooks/useWS";
 import IdentityData from "../interfaces/Identity";
 import { MessageTypes } from "../interfaces/IMessage";
+import SetPlayheadEvent from "../interfaces/Playhead";
 import SocketEvents from "../interfaces/SocketEvents";
-import isBrowser from "../util/isBrowser";
+import { isBrowser } from "../util";
 import Message from "../util/Message";
 import MessageUtil from "../util/MessageUtil";
-
-const Player = dynamic(() => import("../components/Player"), { ssr: false });
 
 interface PlayerPageProps {
   user: User;
@@ -24,24 +21,78 @@ interface PlayerPageProps {
 // types for the function
 
 const PlayerPage: NextPage<PlayerPageProps> = ({ user }) => {
-  // const playerRef = useRef<ReactPlayer>();
   const socket = useWS({ user });
+  const playerRef = useRef<ReactPlayer>();
   const [id, setID] = useState<string>("");
   const [identity, setIdentity] = useState<IdentityData>();
-  if (isBrowser() && typeof socket !== "undefined") {
-    socket.emitter.on(SocketEvents.Identify, (e: IdentityData) => {
-      console.log(e);
-      setID(e.playlist);
-      setIdentity(e);
-    });
-  }
+  const [paused, setPaused] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (isBrowser() && typeof socket !== "undefined") {
+      socket?.emitter.once(SocketEvents.Identify, (e: IdentityData) => {
+        setID(e.playlist);
+        setIdentity(e);
+        playerRef?.current.seekTo(e.playhead);
+        setPaused(e.paused);
+      });
+      socket?.emitter.on(SocketEvents.SetPlayhead, (e: SetPlayheadEvent) => {
+        console.log(e.paused);
+        setPaused(e.paused);
+        playerRef.current.seekTo(e.playhead);
+      });
+    }
+  }, [socket]);
+  const onPlay = () => {
+    if (!identity.admin) return;
+    setPaused(false);
+    socket?.send(
+      MessageUtil.encode(
+        new Message(MessageTypes.SetPlayhead, {
+          playhead: playerRef.current.getCurrentTime(),
+          paused: false,
+        })
+      )
+    );
+  };
+  const onSeek = (playedSeconds: number) => {
+    if (!identity.admin) return;
+    socket.send(
+      MessageUtil.encode(
+        new Message(MessageTypes.SetPlayhead, {
+          playhead: playedSeconds,
+          paused: paused,
+        })
+      )
+    );
+  };
+  const onPause = () => {
+    console.log("running now");
+    if (!identity.admin) return;
+    setPaused(true);
+    socket?.send(
+      MessageUtil.encode(
+        new Message(MessageTypes.SetPlayhead, {
+          playhead: playerRef.current.getCurrentTime(),
+          paused: true,
+        })
+      )
+    );
+  };
   return (
     <>
       <Head>
         <title>Watch Together</title>
       </Head>
       <Container height="100vh" background={"#000"}>
-        <Player id={id} socket={socket} />
+        <Player
+          url={id}
+          onPlay={onPlay}
+          onPause={onPause}
+          onSeek={onSeek}
+          controls={identity?.hasController}
+          playing={!paused}
+          ref={playerRef}
+        />
       </Container>
     </>
   );

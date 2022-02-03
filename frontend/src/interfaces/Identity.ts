@@ -2,10 +2,11 @@ import IUser from "./IUser";
 
 interface IdentityData {
   admin?: boolean;
-  controller?: boolean;
+  hasController?: boolean;
   clientID?: string;
   playlist?: string;
-  playHead?: number;
+  playhead?: number;
+  paused?: boolean;
   user: IUser;
 }
 
