@@ -1,8 +1,9 @@
 import { Box } from "@chakra-ui/react";
 import React, { forwardRef } from "react";
-import ReactPlayer, { Config, ReactPlayerProps } from "react-player";
+import ReactPlayer, { Config } from "react-player";
+import { BaseReactPlayerProps } from "react-player/base";
 
-const Player = forwardRef<ReactPlayer, ReactPlayerProps>((props, ref) => {
+const Player = forwardRef<ReactPlayer, BaseReactPlayerProps>((props, ref) => {
   const config: Config = {
     file: {
       forceHLS: true,
@@ -80,4 +81,5 @@ const Player = forwardRef<ReactPlayer, ReactPlayerProps>((props, ref) => {
   );
 });
 
+Player.displayName = "Player";
 export default Player;

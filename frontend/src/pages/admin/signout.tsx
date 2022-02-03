@@ -17,8 +17,8 @@ const SignOutPage: NextPage = () => {
   const signout = async () => {
     data = await signOut({ redirect: false, callbackUrl: "/" });
   };
-  if (session) {
-    useEffect(() => {
+  useEffect(() => {
+    if (session) {
       signout();
       setTimeout(() => {
         if (data) {
@@ -27,8 +27,8 @@ const SignOutPage: NextPage = () => {
           router.push("/");
         }
       }, 600);
-    }, []);
-  }
+    }
+  });
   return (
     <Container height="100vh">
       <Text>Signing out!</Text>

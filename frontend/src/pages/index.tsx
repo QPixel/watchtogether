@@ -30,7 +30,7 @@ const Index: NextPage = () => {
         </Main>
         <Footer>
           <ChakraLink>
-            <Link href="https://velvox.dev">
+            <Link href="https://velvox.dev" passHref>
               <Text>&copy;2022 Velvox</Text>
             </Link>
           </ChakraLink>
