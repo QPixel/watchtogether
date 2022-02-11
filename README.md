@@ -2,7 +2,7 @@
 
 This was a project that I created over 7 days of working while having covid :)
 
-I probably won't do much with the codebase, but enjoy how I basically figured out how to sync video streams with multiple clients
+I probably won't do much with the codebase, but enjoy how I figured out how to sync video streams with multiple clients. 
 
 ## The Stack
 
